@@ -11,6 +11,7 @@ from streamlit import session_state as ss
 import plotly.express as px
 from streamlit_pdf_viewer import pdf_viewer
 
+
 # Function to load full dataset
 @st.cache_data
 def load_full_data(file_path,sheet, skip_row):
@@ -78,7 +79,7 @@ pages = {
     "Residential": {
         "file": "residential",
         "column": 1,  
-        "pathway": "CREEM",
+        "pathway": "CRREM",
         "metrics": ["tCO2e", "tCO2/m2"],
         "color": "#D77932",  # Purple
     },
@@ -99,7 +100,7 @@ pages = {
     "Commercial": {
         "file": "commercial",
         "column": 1,  # Third column
-        "pathway": "CREEM",
+        "pathway": "CRREM",
         "metrics": ["tCO2e", "tCO2/m2"],
         "color": "#D77932",  # Pink
     },
@@ -156,6 +157,20 @@ pages = {
 
 # ✅ Set page config
 st.set_page_config(page_title="Pathway Explorer", layout="wide")
+
+#Hide Github repo link
+st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # ✅ Get the selected page from URL reference (if exists)
 query_params = st.query_params
